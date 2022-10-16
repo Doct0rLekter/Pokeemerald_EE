@@ -2469,6 +2469,7 @@ static s32 SetInstantBarMove(struct BattleBarInfo *bar)
 s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
 {
     s32 currentBarValue;
+    s32 maxBarValue;
     s32 i, previousVal = 0, toLoop;
     bool32 instant;
 
@@ -2498,6 +2499,7 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                         gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                         &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                         B_HEALTHBAR_PIXELS / 8, 1);
+            maxBarValue = gBattleSpritesDataPtr->battleBars[battlerId].maxValue;
         }
         else // exp bar
         {
@@ -2521,6 +2523,9 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
         if (currentBarValue == -1)
         {
             gBattleSpritesDataPtr->battleBars[battlerId].currValue = 0;
+            if ((i != 0 || instant) && whichBar == HEALTH_BAR)
+                UpdateHpTextInHealthbox(gHealthboxSpriteIds[battlerId], HP_CURRENT, previousVal, maxBarValue);
+            break;
         }
     }
 

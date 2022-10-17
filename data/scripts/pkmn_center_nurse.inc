@@ -128,3 +128,4 @@ EventScript_PkmnCenterNurse_PlayerTurn::
 	waitmovement 0
 	release
  	end	
+	

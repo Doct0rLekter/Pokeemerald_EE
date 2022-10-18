@@ -1032,6 +1032,7 @@ int SetCableClubWarp(void)
     return 0;
 }
 
+
 extern const u8 EventScript_DisableAutoRun[];
 extern const u8 EventScript_EnableAutoRun[];
 static bool8 EnableAutoRun(void)
@@ -1043,13 +1044,14 @@ static bool8 EnableAutoRun(void)
     if (gSaveBlock2Ptr->autoRun)
     {
         gSaveBlock2Ptr->autoRun = FALSE;
-        ScriptContext1_SetupScript(EventScript_DisableAutoRun);
+        int ScriptContext1_SetupScript(EventScript_DisableAutoRun);
     }
     else
     {
         gSaveBlock2Ptr->autoRun = TRUE;
-        ScriptContext1_SetupScript(EventScript_EnableAutoRun);
+        int ScriptContext1_SetupScript(EventScript_EnableAutoRun);
     }
 
     return TRUE;
 }
+

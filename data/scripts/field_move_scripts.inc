@@ -151,7 +151,7 @@ Text_StrengthActivated:
 	.string "around.$"
 	
 Text_PlayerUsedGlove:
-	.string "{PLAYER} used the POWER GLOVE!$"d.$"
+	.string "{PLAYER} used the POWER GLOVE!$"
 
 EventScript_UseWaterfall::
 	lockall
@@ -253,6 +253,7 @@ AutoRunDisabled:
 EventScript_EnableAutoRun::
     msgbox AutoRunEnabled MSGBOX_SIGN
     end
+	
 AutoRunEnabled:
     .string "Auto Run {COLOR GREEN}Enabled{COLOR DARK_GRAY}.$"
 

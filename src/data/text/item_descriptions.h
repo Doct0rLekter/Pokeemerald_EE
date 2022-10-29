@@ -3823,4 +3823,3 @@ static const u8 sPowerGloveDesc[] = _(
 	"A special glove\n"
     "that makes moving\n"
     "heavy rocks easy.");
-    

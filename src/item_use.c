@@ -226,6 +226,28 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
     }
 }
 
+void ItemUseOutOfBattle_CleanseTag(u8 taskId)
+{
+    if (!FlagGet(FLAG_SYS_CLEANSE_TAG))
+    {
+        FlagSet(FLAG_SYS_CLEANSE_TAG);
+        PlaySE(SE_REPEL);
+        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_CleanseTagActive, Task_CloseCantUseKeyItemMessage);
+        else
+            DisplayItemMessage(taskId, 1, gText_CleanseTagActive, CloseItemMessage);
+    }
+    else
+    {
+        FlagClear(FLAG_SYS_CLEANSE_TAG);
+        PlaySE(SE_PC_OFF);
+        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+            DisplayItemMessageOnField(taskId, gText_CleanseTagInactive, Task_CloseCantUseKeyItemMessage);
+        else
+            DisplayItemMessage(taskId, 1, gText_CleanseTagInactive, CloseItemMessage);
+    }
+}
+
 void ItemUseOutOfBattle_Bike(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;

@@ -6153,7 +6153,7 @@ const struct Item gItems[] =
 
   [ITEM_EXP_SHARE] =
     {
-        .name = _("EXP. SHARE"),
+        .name = _("Exp. Share"),
         .itemId = ITEM_EXP_SHARE,
         .price = 3000,
         .holdEffect = HOLD_EFFECT_EXP_SHARE,
@@ -6235,13 +6235,13 @@ const struct Item gItems[] =
     {
         .name = _("Cleanse Tag"),
         .itemId = ITEM_CLEANSE_TAG,
-        .price = 5000,
+        .price = 0,
         .holdEffect = HOLD_EFFECT_REPEL,
         .description = sCleanseTagDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .flingPower = 30,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_CleanseTag,
     },
 
     [ITEM_SMOKE_BALL] =
@@ -9955,7 +9955,7 @@ const struct Item gItems[] =
 	// HM Items
     [ITEM_SURFBOARD] =
     {
-        .name = _("SURFBOARD"),
+        .name = _("Surfboard"),
         .itemId = ITEM_SURFBOARD,
         .price = 0,
 		.importance = 1,
@@ -9968,7 +9968,7 @@ const struct Item gItems[] =
 
 	[ITEM_AXE] =
     {
-        .name = _("AXE"),
+        .name = _("Axe"),
         .itemId = ITEM_AXE,
         .price = 0,
 		.importance = 1,
@@ -9981,7 +9981,7 @@ const struct Item gItems[] =
 
 	[ITEM_HAMMER] =
     {
-        .name = _("HAMMER"),
+        .name = _("Hammer"),
         .itemId = ITEM_HAMMER,
         .price = 0,
 		.importance = 1,
@@ -9994,7 +9994,7 @@ const struct Item gItems[] =
 
 	[ITEM_DIVING_SUIT] =
     {
-        .name = _("DIVING SUIT"),
+        .name = _("Diving Suit"),
         .itemId = ITEM_DIVING_SUIT,
         .price = 0,
 		.importance = 1,
@@ -10007,7 +10007,7 @@ const struct Item gItems[] =
 
 	[ITEM_LANTERN] =
     {
-        .name = _("LANTERN"),
+        .name = _("Lantern"),
         .itemId = ITEM_LANTERN,
         .price = 0,
 		.importance = 1,
@@ -10020,7 +10020,7 @@ const struct Item gItems[] =
 
 	[ITEM_POWER_GLOVE] =
     {
-        .name = _("POWER GLOVE"),
+        .name = _("Power Glove"),
         .itemId = ITEM_POWER_GLOVE,
         .price = 0,
 		.importance = 1,

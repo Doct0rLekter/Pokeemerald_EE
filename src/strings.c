@@ -1834,3 +1834,6 @@ const u8 gText_Berries[] = _("BERRIES");
 // Exp. Share
 const u8 gText_ExpShareOn[] = _("Turned on the Exp. Share.\pParty will now gain a portion\nof the Experience Points.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOff[] = _("Turned off the Exp. Share.\pParty will no longer gain a portion\nof any Experience Points.{PAUSE_UNTIL_PRESS}");
+// Cleanse Tag
+const u8 gText_CleanseTagActive[] = _("Chanted the odd incantation.\pWild Pokémon will now avoid\nattacking your party.{PAUSE_UNTIL_PRESS}");
+const u8 gText_CleanseTagInactive[] = _("Sealed the odd incantation.\pWild Pokémon will no longer avoid\nattacking your party.{PAUSE_UNTIL_PRESS}");

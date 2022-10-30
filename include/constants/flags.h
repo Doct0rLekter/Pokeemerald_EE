@@ -97,7 +97,7 @@
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
 #define FLAG_WATERFALL   					 0x54  // Allow Surfboard to go up waterfalls
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
+#define FLAG_NO_ENCOUNTER                    0x55  // Turn off random encounters
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
 #define FLAG_MET_RIVAL_MOM                   0x57
@@ -118,7 +118,7 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67 //
 
-#define FLAG_UNUSED_0x068                    0x68  // Unused Flag
+#define FLAG_NO_TRAINER_SEE                  0x68 // Turn off trainer seeing player
 
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
 #define FLAG_RECEIVED_HM04                   0x6A

@@ -69,6 +69,7 @@ static bool8 TryStartMiscWalkingScripts(u16);
 static bool8 TryStartStepCountScript(u16);
 static void UpdateFriendshipStepCounter(void);
 static bool8 UpdatePoisonStepCounter(void);
+static bool8 EnableAutoRun(void);
 
 void FieldClearPlayerInput(struct FieldInput *input)
 {
@@ -80,7 +81,7 @@ void FieldClearPlayerInput(struct FieldInput *input)
     input->heldDirection2 = FALSE;
     input->tookStep = FALSE;
     input->pressedBButton = FALSE;
-    input->input_field_1_0 = FALSE;
+    input->pressedRButton = FALSE;
     input->input_field_1_1 = FALSE;
     input->input_field_1_2 = FALSE;
     input->input_field_1_3 = FALSE;
@@ -105,6 +106,8 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
                 input->pressedAButton = TRUE;
             if (newKeys & B_BUTTON)
                 input->pressedBButton = TRUE;
+            if (newKeys & R_BUTTON)
+                input->pressedRButton = TRUE;
         }
 
         if (heldKeys & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT))
@@ -195,6 +198,9 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         return TRUE;
     }
     if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
+        return TRUE;
+
+    if (input->pressedRButton && EnableAutoRun())
         return TRUE;
 
 #if DEBUG_SYSTEM_ENABLE == TRUE && DEBUG_SYSTEM_IN_MENU == FALSE
@@ -466,12 +472,12 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 
 static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metatileBehavior, u8 direction)
 {
-    if (FlagGet(FLAG_BADGE05_GET) == TRUE && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
+   if (IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_UseSurf;
 
     if (MetatileBehavior_IsWaterfall(metatileBehavior) == TRUE)
     {
-        if (FlagGet(FLAG_BADGE08_GET) == TRUE && IsPlayerSurfingNorth() == TRUE)
+        if (FlagGet(FLAG_WATERFALL) == TRUE && IsPlayerSurfingNorth() == TRUE)
             return EventScript_UseWaterfall;
         else
             return EventScript_CannotUseWaterfall;
@@ -481,9 +487,9 @@ static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metati
 
 static bool32 TrySetupDiveDownScript(void)
 {
-    if (FlagGet(FLAG_BADGE07_GET) && TrySetDiveWarp() == 2)
+    if (TrySetDiveWarp() == 2)
     {
-        ScriptContext_SetupScript(EventScript_UseDive);
+        ScriptContext_SetupScript(EventScript_DiveSpot);
         return TRUE;
     }
     return FALSE;
@@ -491,9 +497,9 @@ static bool32 TrySetupDiveDownScript(void)
 
 static bool32 TrySetupDiveEmergeScript(void)
 {
-    if (FlagGet(FLAG_BADGE07_GET) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
+    if (gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
     {
-        ScriptContext_SetupScript(EventScript_UseDiveUnderwater);
+        ScriptContext_SetupScript(EventScript_DiveUnderwater);
         return TRUE;
     }
     return FALSE;
@@ -1025,3 +1031,27 @@ int SetCableClubWarp(void)
     SetupWarp(&gMapHeader, GetWarpEventAtMapPosition(&gMapHeader, &position), &position);
     return 0;
 }
+
+
+extern const u8 EventScript_DisableAutoRun[];
+extern const u8 EventScript_EnableAutoRun[];
+static bool8 EnableAutoRun(void)
+{
+    if (!FlagGet(FLAG_SYS_B_DASH))
+        return FALSE;   //auto run unusable until you get running shoes
+
+    PlaySE(SE_SELECT);
+    if (gSaveBlock2Ptr->autoRun)
+    {
+        gSaveBlock2Ptr->autoRun = FALSE;
+        ScriptContext_SetupScript(EventScript_DisableAutoRun);
+    }
+    else
+    {
+        gSaveBlock2Ptr->autoRun = TRUE;
+        ScriptContext_SetupScript(EventScript_EnableAutoRun);
+    }
+
+    return TRUE;
+}
+

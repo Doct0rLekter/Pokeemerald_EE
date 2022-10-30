@@ -117,14 +117,7 @@ enum {
 // In CursorCb_FieldMove, field moves <= FIELD_MOVE_WATERFALL are assumed to line up with the badge flags.
 // Badge flag names are commented here for people searching for references to remove the badge requirement.
 enum {
-    FIELD_MOVE_CUT,         // FLAG_BADGE01_GET
-    FIELD_MOVE_FLASH,       // FLAG_BADGE02_GET
-    FIELD_MOVE_ROCK_SMASH,  // FLAG_BADGE03_GET
-    FIELD_MOVE_STRENGTH,    // FLAG_BADGE04_GET
-    FIELD_MOVE_SURF,        // FLAG_BADGE05_GET
     FIELD_MOVE_FLY,         // FLAG_BADGE06_GET
-    FIELD_MOVE_DIVE,        // FLAG_BADGE07_GET
-    FIELD_MOVE_WATERFALL,   // FLAG_BADGE08_GET
     FIELD_MOVE_TELEPORT,
     FIELD_MOVE_DIG,
     FIELD_MOVE_SECRET_POWER,
@@ -471,10 +464,7 @@ static void CursorCb_Trade1(u8);
 static void CursorCb_Trade2(u8);
 static void CursorCb_Toss(u8);
 static void CursorCb_FieldMove(u8);
-static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
-static bool8 SetUpFieldMove_Waterfall(void);
-static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
 
 // static const data
@@ -3712,13 +3702,8 @@ static void CursorCb_FieldMove(u8 taskId)
     else
     {
         // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
-        {
-            DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
-            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-        }
-        else if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc() == TRUE)
-        {
+        if (sFieldMoveCursorCallbacks[fieldMove].fieldMoveFunc() == TRUE)       
+         {
             switch (fieldMove)
             {
             case FIELD_MOVE_MILK_DRINK:
@@ -3752,18 +3737,7 @@ static void CursorCb_FieldMove(u8 taskId)
         // Cant use Field Move
         else
         {
-            switch (fieldMove)
-            {
-            case FIELD_MOVE_SURF:
-                DisplayCantUseSurfMessage();
-                break;
-            case FIELD_MOVE_FLASH:
-                DisplayCantUseFlashMessage();
-                break;
-            default:
-                DisplayPartyMenuStdMessage(sFieldMoveCursorCallbacks[fieldMove].msgId);
-                break;
-            }
+            DisplayPartyMenuStdMessage(sFieldMoveCursorCallbacks[fieldMove].msgId);
             gTasks[taskId].func = Task_CancelAfterAorBPress;
         }
     }
@@ -3839,23 +3813,6 @@ static void DisplayCantUseFlashMessage(void)
         DisplayPartyMenuStdMessage(PARTY_MSG_CANT_USE_HERE);
 }
 
-static void FieldCallback_Surf(void)
-{
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    FieldEffectStart(FLDEFF_USE_SURF);
-}
-
-static bool8 SetUpFieldMove_Surf(void)
-{
-    if (PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
-    {
-        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Surf;
-        return TRUE;
-    }
-    return FALSE;
-}
-
 static void DisplayCantUseSurfMessage(void)
 {
     if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
@@ -3875,44 +3832,6 @@ static bool8 SetUpFieldMove_Fly(void)
 void CB2_ReturnToPartyMenuFromFlyMap(void)
 {
     InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, TRUE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ReturnToFieldWithOpenMenu);
-}
-
-static void FieldCallback_Waterfall(void)
-{
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    FieldEffectStart(FLDEFF_USE_WATERFALL);
-}
-
-static bool8 SetUpFieldMove_Waterfall(void)
-{
-    s16 x, y;
-
-    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-    if (MetatileBehavior_IsWaterfall(MapGridGetMetatileBehaviorAt(x, y)) == TRUE && IsPlayerSurfingNorth() == TRUE)
-    {
-        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Waterfall;
-        return TRUE;
-    }
-    return FALSE;
-}
-
-static void FieldCallback_Dive(void)
-{
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    FieldEffectStart(FLDEFF_USE_DIVE);
-}
-
-static bool8 SetUpFieldMove_Dive(void)
-{
-    gFieldEffectArguments[1] = TrySetDiveWarp();
-    if (gFieldEffectArguments[1] != 0)
-    {
-        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Dive;
-        return TRUE;
-    }
-    return FALSE;
 }
 
 static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox, u32 slot)
@@ -4965,8 +4884,6 @@ static void Task_LearnedMove(u8 taskId)
     if (move[1] == 0)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (item < ITEM_HM01_CUT)
-            RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);
     StringCopy(gStringVar2, gMoveNames[move[0]]);
@@ -5073,13 +4990,17 @@ static void Task_PartyMenuReplaceMove(u8 taskId)
 {
     struct Pokemon *mon;
     u16 move;
+    u8 oldPP;
 
     if (IsPartyMenuTextPrinterActive() != TRUE)
     {
         mon = &gPlayerParty[gPartyMenu.slotId];
         RemoveMonPPBonus(mon, GetMoveSlotToReplace());
+        oldPP = GetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL);
         move = gPartyMenu.data1;
         SetMonMoveSlot(mon, move, GetMoveSlotToReplace());
+        if (GetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), NULL) > oldPP)
+         SetMonData(mon, MON_DATA_PP1 + GetMoveSlotToReplace(), &oldPP);
         Task_LearnedMove(taskId);
     }
 }
@@ -6823,6 +6744,6 @@ void IsLastMonThatKnowsSurf(void)
             }
         }
         if (AnyStorageMonWithMove(move) != TRUE)
-            gSpecialVar_Result = TRUE;
+            gSpecialVar_Result = FALSE;
     }
 }

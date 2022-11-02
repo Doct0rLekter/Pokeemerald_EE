@@ -443,22 +443,22 @@ const u8 gTentacruelPokedexText[] = _(
     "grows excited or agitated.");
 
 const u8 gGeodudePokedexText[] = _(
-    "It climbs mountain paths using only the\n"
-    "power of its arms. Because they look just\n"
-    "like boulders lining paths, hikers may step\n"
-    "on them without noticing.");
+    "Geodude compete against each other with\n"
+    "headbutts. The iron sand on their heads\n"
+    "will stick to whichever one is able to\n"
+    "generate a stronger magnetic field.");
 
 const u8 gGravelerPokedexText[] = _(
-    "They descend from mountains by tumbling\n"
-    "down steep slopes. They are so brutal,\n"
-    "they smash aside obstructing trees and\n"
-    "massive boulders with thunderous tackles.");
+    "They eat magnetic rocks and often get\n"
+    "into a scrap over them. The shock of\n"
+    "Graveler smashing together causes a\n"
+    "flash of light and a booming noise");
 
 const u8 gGolemPokedexText[] = _(
-    "It is said to live in volcanic craters\n"
-    "on mountain peaks. Once a year, it sheds\n"
-    "its hide and grows larger. The shed hide\n"
-    "crumbles and returns to the soil.");
+    "It fires rocks charged with electricity.\n"
+    "Even if the rock isnt fired accurately,\n"
+    "even just grazing an opponent will cause\n"
+    "pain, numbness, and fainting.");
 
 const u8 gPonytaPokedexText[] = _(
     "A Ponyta is very weak at birth. It can\n"
@@ -941,10 +941,10 @@ const u8 gQuilavaPokedexText[] = _(
     "while scorching an enemy.");
 
 const u8 gTyphlosionPokedexText[] = _(
-    "It can hide behind a shimmering heat haze\n"
-    "that it creates using its intense flames.\n"
-    "Typhlosion create blazing explosive\n"
-    "blasts that burn everything to cinders.");
+    "Said to purify forsaken souls with its\n"
+    "flames and guide them to the afterlife.\n"
+    "its form may have been influenced by the\n"
+    "sacred energy of Mount Pyre.");
 
 const u8 gTotodilePokedexText[] = _(
     "Despite its small body, Totodile's jaws\n"
@@ -1577,16 +1577,16 @@ const u8 gMightyenaPokedexText[] = _(
     "coordinated teamwork.");
 
 const u8 gZigzagoonPokedexText[] = _(
-    "Rubbing its nose against the ground, it\n"
-    "always wanders about back and forth in\n"
-    "search of something. It is distinguished\n"
-    "by the zigzag footprints it leaves.");
+    "Its restlessness causes it to constantly\n"
+    "run around. If it sees any other Pokémon,\n"
+    "it will purposely charge into them in order\n"
+    "to start a fight.");
 
 const u8 gLinoonePokedexText[] = _(
-    "It is exceedingly fast if it only has to run\n"
-    "in a straight line. When it spots pond-\n"
-    "dwelling prey underwater, it quickly leaps\n"
-    "in and catches it with its sharp claws.");
+    "It uses its long tongue to taunt opponents.\n"
+    "Once the opposition is enraged, this Pokémon\n"
+    "hurls itself recklessly at the opponent,\n"
+    "tackling them forcefully.");
 
 const u8 gWurmplePokedexText[] = _(
     "It sticks to tree branches and eats\n"

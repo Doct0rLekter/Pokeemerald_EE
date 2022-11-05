@@ -1409,7 +1409,7 @@
 #define FLAG_SYS_NATIONAL_DEX                       (SYSTEM_FLAGS + 0x36)
 #define FLAG_SYS_EXP_SHARE                          (SYSTEM_FLAGS + 0x37) // For the Exp. Share item
 #define FLAG_SYS_CLEANSE_TAG                        (SYSTEM_FLAGS + 0x38) // For Cleanse Tag item rework
-#define FLAG_SYS_CAVE_BATTLE                        (SYSTEM_FLAGS + 0x39) // Unused Flag, same as above
+#define FLAG_SYS_PARTY_MOVES                        (SYSTEM_FLAGS + 0x39) // Used for move relearner functionality
 #define FLAG_SYS_SHOAL_TIDE                         (SYSTEM_FLAGS + 0x3A)
 #define FLAG_SYS_RIBBON_GET                         (SYSTEM_FLAGS + 0x3B)
 

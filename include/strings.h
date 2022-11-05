@@ -3043,5 +3043,7 @@ extern const u8 gText_ExpShareOff[];
 // Cleanse Tag
 extern const u8 gText_CleanseTagActive[];
 extern const u8 gText_CleanseTagInactive[];
+// Move Relearner
+extern const u8 gText_Moves_Menu[];
 
 #endif // GUARD_STRINGS_H

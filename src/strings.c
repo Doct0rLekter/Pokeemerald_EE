@@ -1837,3 +1837,5 @@ const u8 gText_ExpShareOff[] = _("Turned off the Exp. Share.\pParty will no long
 // Cleanse Tag
 const u8 gText_CleanseTagActive[] = _("Chanted the odd incantation.\pWild Pokémon will now avoid\nattacking your party.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CleanseTagInactive[] = _("Sealed the odd incantation.\pWild Pokémon will no longer avoid\nattacking your party.{PAUSE_UNTIL_PRESS}");
+// Party Menu Move Relearner
+const u8 gText_Moves_Menu[] = _("CHANGE MOVES");

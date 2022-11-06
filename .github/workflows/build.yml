@@ -49,4 +49,6 @@ jobs:
         env:
           MODERN: 1
           COMPARE: 0
-        run: make -j${nproc} all
+        run: |
+        chmod +x poryscript
+        make -j${nproc} all

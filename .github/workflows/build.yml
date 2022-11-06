@@ -42,13 +42,13 @@ jobs:
 
       - name: Agbcc
         run: |
-        chmod +x tools/poryscript/poryscript
-        make -j${nproc} all
+         chmod +x tools/poryscript/poryscript
+         make -j${nproc} all
 
       - name: Modern
         env:
           MODERN: 1
           COMPARE: 0
         run: |
-        chmod +x tools/poryscript/poryscript
-        make -j${nproc} all
+         chmod +x tools/poryscript/poryscript
+         make -j${nproc} all

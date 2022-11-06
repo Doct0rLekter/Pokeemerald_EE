@@ -892,7 +892,7 @@ const struct PokedexEntry gPokedexEntries[] =
     {
         .categoryName = _("Rock"),
         .height = 4,
-        .weight = 200,
+        .weight = 203,
         .description = gGeodudePokedexText,
         .pokemonScale = 347,
         .pokemonOffset = 18,
@@ -904,9 +904,9 @@ const struct PokedexEntry gPokedexEntries[] =
     {
         .categoryName = _("Rock"),
         .height = 10,
-        .weight = 1050,
+        .weight = 1100,
         .description = gGravelerPokedexText,
-        .pokemonScale = 256,
+        .pokemonScale = 258,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
@@ -915,10 +915,10 @@ const struct PokedexEntry gPokedexEntries[] =
     [NATIONAL_DEX_GOLEM] =
     {
         .categoryName = _("Megaton"),
-        .height = 14,
-        .weight = 3000,
+        .height = 17,
+        .weight = 3160,
         .description = gGolemPokedexText,
-        .pokemonScale = 256,
+        .pokemonScale = 266,
         .pokemonOffset = 3,
         .trainerScale = 296,
         .trainerOffset = 2,
@@ -1886,13 +1886,13 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_TYPHLOSION] =
     {
-        .categoryName = _("Volcano"),
-        .height = 17,
-        .weight = 795,
+        .categoryName = _("Ghost Flame"),
+        .height = 16,
+        .weight = 698,
         .description = gTyphlosionPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
-        .trainerScale = 268,
+        .trainerScale = 272,
         .trainerOffset = 1,
     },
 

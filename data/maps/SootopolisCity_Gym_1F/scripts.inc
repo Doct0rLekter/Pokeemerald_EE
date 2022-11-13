@@ -240,8 +240,9 @@ SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis:
 	.string "The RAIN BADGE certifies you\n"
 	.string "to train POKéMON of any level,\l"
 	.string "even those you get in trades.\p"
-	.string "The RAIN BADGE also allows you\n"
-	.string "to scale cascading waterfalls.\p"
+	.string "The RAIN BADGE also allows you to\n"
+	.string "scale cascading waterfalls like the\l"
+	.string "one on the way to EVER GRANDE CITY.\p"
 	.string "And, so that you never forget the\n"
 	.string "battle we shared, take this…$"
 

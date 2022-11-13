@@ -96,7 +96,7 @@
 #define FLAG_RESCUED_BIRCH                       0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
-#define FLAG_WATERFALL   					 0x54  // Allow Surfboard to go up waterfalls
+#define FLAG_WATERFALL   					      0x54  // Allow Surfboard to go up waterfalls
 #define FLAG_NO_ENCOUNTER                    0x55  // Turn off random encounters
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly

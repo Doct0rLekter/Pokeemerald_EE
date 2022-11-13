@@ -14,6 +14,7 @@
 #include "strings.h"
 #include "task.h"
 #include "trainer_hill.h"
+#include "constants/abilities.h" 
 #include "constants/field_poison.h"
 #include "constants/party_menu.h"
 
@@ -123,7 +124,7 @@ s32 DoPoisonFieldEffect(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN)
+        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN && GetMonAbility(&gPlayerParty[i]) != ABILITY_POISON_HEAL)
         {
             // Apply poison damage
             hp = GetMonData(pokemon, MON_DATA_HP);

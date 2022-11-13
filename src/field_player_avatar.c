@@ -639,7 +639,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     {
                 if (heldKeys & B_BUTTON && gSaveBlock2Ptr->autoRun == TRUE)
         {
-            PlayerWalkFaster(direction);
+            PlayerWalkNormal(direction);
         }
         else
         {
@@ -650,7 +650,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     }
     else
     {
-        PlayerWalkFaster(direction);
+        PlayerWalkNormal(direction);
     }
 }
 

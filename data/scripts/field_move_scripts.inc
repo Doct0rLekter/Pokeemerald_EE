@@ -259,3 +259,15 @@ AutoRunEnabled:
 
 Text_MonUsedFieldMove:
 	.string "{STR_VAR_1} used {STR_VAR_2}!$"
+
+EventScript_SwitchToAcroMode::
+    msgbox AcroMode MSGBOX_SIGN
+    end
+AcroMode:
+    .string "ACRO mode {COLOR GREEN}Enabled{COLOR DARK_GRAY}.$"
+    
+EventScript_SwitchToMachMode::
+    msgbox MachMode MSGBOX_SIGN
+    end
+MachMode:
+    .string "MACH mode {COLOR GREEN}Enabled{COLOR DARK_GRAY}.$"

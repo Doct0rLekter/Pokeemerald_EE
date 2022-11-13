@@ -148,6 +148,8 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     struct MapPosition position;
     u8 playerDirection;
     u16 metatileBehavior;
+    extern const u8 EventScript_SwitchToAcroMode[];
+    extern const u8 EventScript_SwitchToMachMode[];
 
     gSpecialVar_LastTalked = 0;
     gSelectedObjectEvent = 0;
@@ -200,9 +202,32 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
         return TRUE;
 
-    if (input->pressedRButton && EnableAutoRun())
-        return TRUE;
-
+    if (input->pressedRButton) 
+    {
+        if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE) && EnableAutoRun())
+            return TRUE;
+   
+        else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+        {
+            ObjectEventClearHeldMovementIfActive(&gObjectEvents[gPlayerAvatar.objectEventId]);
+            if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
+            {
+                gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_MACH_BIKE;
+                gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_ACRO_BIKE;
+                SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+                PlaySE(SE_BIKE_HOP);
+                ScriptContext_SetupScript(EventScript_SwitchToAcroMode);
+            }
+            else
+            {
+                gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_ACRO_BIKE;
+                gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_MACH_BIKE;
+                SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+                PlaySE(SE_BIKE_BELL);
+                ScriptContext_SetupScript(EventScript_SwitchToMachMode);
+            }
+        }
+    }
 #if DEBUG_SYSTEM_ENABLE == TRUE && DEBUG_SYSTEM_IN_MENU == FALSE
     if (input->input_field_1_2)
     {

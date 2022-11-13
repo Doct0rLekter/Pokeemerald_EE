@@ -252,11 +252,9 @@ FortreeCity_Gym_Text_ReceivedFeatherBadge:
 	.string "from WINONA.$"
 
 FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis:
-	.string "With the FEATHER BADGE, all POKéMON up\n"
-	.string "to LV 70, even those received through\l"
-	.string "trades, will obey your every command.\p"
-	.string "You will also be able to use\n"
-	.string "the HM move FLY outside of battle.\p"
+	.string "The FEATHER BADGE certifies you\n"
+	.string "to train POKéMON up to Level 70,\l"
+	.string "even those you get in trades.\p"
 	.string "And this…\n"
 	.string "This is a gift from me.$"
 

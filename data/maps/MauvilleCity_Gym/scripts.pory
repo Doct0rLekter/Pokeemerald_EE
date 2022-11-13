@@ -357,10 +357,9 @@ MauvilleCity_Gym_Text_ReceivedDynamoBadge:
 	.string "from WATTSON.$"
 
 MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis:
-	.string "With the DYNAMO BADGE, POKéMON can\n"
-	.string "use ROCK SMASH out of battle.\p"
-	.string "And, it will make your POKéMON a little\n"
-	.string "bit faster, too.\p"
+	.string "The DYNAMO BADGE certifies you\n"
+	.string "to train POKéMON up to Level 40,\l"
+	.string "even those you get in trades.\p"
 	.string "Hmm…\n"
 	.string "You should take this, too!$"
 

@@ -9,7 +9,7 @@
 #define DEBUG_SYSTEM_ENABLE         TRUE               // Enables a overworld debug menu for changing flags, variables, giving pokemon and more, accessed by holding R and pressing START while in the overworld by default.
 #define DEBUG_SYSTEM_HELD_KEYS      (L_BUTTON)         // The keys required to be held to open the debug menu.
 #define DEBUG_SYSTEM_TRIGGER_EVENT  pressedStartButton // The event that opens the menu when holding the key(s) defined in DEBUG_SYSTEM_HELD_KEYS.
-#define DEBUG_SYSTEM_IN_MENU        FALSE              // Replaces the overworld debug menu button combination with a start menu entry (above Pokédex).
+#define DEBUG_SYSTEM_IN_MENU        TRUE              // Replaces the overworld debug menu button combination with a start menu entry (above Pokédex).
 
 // Replace the used flags with others or disable with a 0
 #define DEBUG_FLAG_NO_COLLISION             0   // If this flag is set, the debug function in the Utility submenu to disable player collision can be used.

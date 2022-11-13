@@ -1598,16 +1598,16 @@ static void DebugAction_Flags_TrainerSeeOnOff(u8 taskId)
 }
 static void DebugAction_Flags_BagUseOnOff(u8 taskId)
 {
-#if B_FLAG_NO_BAG_USE == 0
+#if FLAG_DISABLE_BAG == 0
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
     ScriptContext_SetupScript(Debug_FlagsNotSetMessage);
 #else
-    if (FlagGet(B_FLAG_NO_BAG_USE))
+    if (FlagGet(FLAG_DISABLE_BAG))
         PlaySE(SE_PC_OFF);
     else
         PlaySE(SE_PC_LOGIN);
-    FlagToggle(B_FLAG_NO_BAG_USE);
+    FlagToggle(FLAG_DISABLE_BAG);
 #endif
 }
 static void DebugAction_Flags_CatchingOnOff(u8 taskId)

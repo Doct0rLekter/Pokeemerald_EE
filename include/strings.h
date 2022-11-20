@@ -3045,5 +3045,10 @@ extern const u8 gText_CleanseTagActive[];
 extern const u8 gText_CleanseTagInactive[];
 // Move Relearner
 extern const u8 gText_Moves_Menu[];
+// Move Items Option
+extern const u8 gMenuText_Move[];
+extern const u8 gText_MoveItemWhere[];
+extern const u8 gText_XsYAnd[];
+extern const u8 gText_XsYWereSwapped[];
 
 #endif // GUARD_STRINGS_H

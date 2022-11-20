@@ -127,6 +127,4 @@ EventScript_PkmnCenterNurse_PlayerTurn::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	release
- 	end	
-
-	
+ 	end

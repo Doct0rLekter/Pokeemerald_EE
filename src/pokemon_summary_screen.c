@@ -3481,9 +3481,21 @@ static void PrintRibbonCount(void)
 
 static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 n)
 {
-    // I wasn't able to make sense of the color codes here. 
-    // They may be affected by the "printTextOnWindow" function's choice of base color. 
-    // Regardless: Light_Red becomes red, and Light_Green becomes blue which are the colors I wanted.
+    // Color codes don't match charmap values. The below shows what different integers correspond to in practice.
+    //
+    //  INT:    CHARMAP:      ACTUAL:
+    //  01      WHITE	      White
+    //  02      DARK_GRAY	  Dark White
+    //  03      LIGHT_GRAY	  Light Grey
+    //  04      RED	          Grey
+    //  05      LIGHT_RED	  Red
+    //  06      GREEN	      Light Orange
+    //  07      LIGHT_GREEN	  Cyan
+    //  08      BLUE	      Blue
+    //  09      LIGHT_BLUE	  Light Red
+    //	10                    Dark Red
+    // 	11                    Light Cyan
+
     static const u8 sTextNatureDown[] = _("{COLOR LIGHT_RED}");
     static const u8 sTextNatureUp[] = _("{COLOR LIGHT_GREEN}");
     static const u8 sTextNatureNeutral[] = _("{COLOR}{01}");

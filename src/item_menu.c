@@ -1054,8 +1054,6 @@ static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
             {
                 if (gSaveBlock2Ptr->optionsButtonMode != 2)
                     BlitBitmapToWindow(windowId, sLButtonGfx, 96, y - 1, 24, 16);
-                else
-                    BlitBitmapToWindow(windowId, sRButtonGfx, 96, y - 1, 24, 16);
             }
         }
     }
